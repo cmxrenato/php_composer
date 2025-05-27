@@ -1,0 +1,19 @@
+{
+    "name": "renato/composer",
+    "description": "Estudando o Composer",
+    "type": "project",
+    "autoload":{
+        "psr-4":{
+            "App\\":"src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "cmxrenato",
+            "email": "renatoaraujoleal@gmail.com"
+        }
+    ],
+    "require": {
+        "mpdf/mpdf": "^8.0"
+    }
+}
