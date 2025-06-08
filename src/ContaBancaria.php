@@ -3,26 +3,18 @@ declare(strict_types=1);
 
 namespace App;
 
-class ContaBancaria
+use App\Contratos\DadosContaBancariaInterface;
+use App\Contratos\OperacoesContaBancariaInterface;
+
+abstract class ContaBancaria implements DadosContaBancariaInterface, OperacoesContaBancariaInterface
 {
-    private string $banco;
-    private string $nomeTitular;
-    private string $numeroAgencia;
-    private string $numeroConta;
-    private float $saldo;
+    protected string $banco;
+    protected string $nomeTitular;
+    protected string $numeroAgencia;
+    protected string $numeroConta;
+    protected float $saldo;
 
-    public function exibirDadosConta():array
-    {
-        return[
-        'banco'=>$this->banco,
-        'nomeTitular'=>$this->nomeTitular,
-        'numeroAgencia'=>$this->numeroAgencia,
-        'numeroConta'=>$this->numeroConta,
-        'saldo'=>$this->saldo,
-        ];
-
-}
-    public function __construct(
+        public function __construct(
         string $banco,
         string $nomeTitular,
         string $numeroAgencia,
@@ -39,6 +31,31 @@ class ContaBancaria
 
 
         }
+ public function exibirDadosConta():array
+    {
+        return[
+        'banco'=>$this->banco,
+        'nomeTitular'=>$this->nomeTitular,
+        'numeroAgencia'=>$this->numeroAgencia,
+        'numeroConta'=>$this->numeroConta,
+        'saldo'=>$this->saldo,
+        ];
+
+}
+	function exibirDados(DadosContaBancariaInterface $conta):void
+	{
+		echo "Banco: ". $conta->getBanco();
+		echo PHP_EOL;
+		echo "Agência: ". $conta->getAgencia();
+		echo PHP_EOL;
+		echo "Conta: ". $conta->getConta();
+		echo PHP_EOL;
+		echo "Titular: ". $conta->getNome();
+		echo PHP_EOL;
+		echo "-----------------------------------";
+		echo PHP_EOL;
+		
+	}
 
 
      public function depositar(float $valor):string
@@ -53,11 +70,8 @@ class ContaBancaria
          return "Saque de R$".number_format($valor,2,',','')." realizado";
          }
 
-     public function obterSaldo():string
-     {
-           return "Saldo em R$: ".number_format($this->saldo,2,',','');
-         }
-
+        public abstract function obterSaldo():string;
+    
 
 
     
