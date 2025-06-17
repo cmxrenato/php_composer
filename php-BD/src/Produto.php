@@ -44,20 +44,17 @@ class Produto
         return $this->descricao;
     }
 
-    public function list(): void
+    public function list(): array
     {
         //Depois alterar os echos para retornar um array de objetos 
-        echo '<h1>Produtos</h1>';
+        
         $sql = 'SELECT id,nome,preco,descricao FROM produtos';
-
-        foreach ($this->conexao->query($sql) as $row) {
-            echo '<p>';
-            echo 'ID: ' . $row['id'] . '<br>';
-            echo 'Nome: ' . $row['nome'] . '<br>';
-            echo 'Preço: R$' . $row['preco'] . '<br>';
-            echo 'Descrição: ' . $row['descricao'] . '<br>';
-            echo '</p>';
-}
+        $produtos = [];
+        foreach ($this->conexao->query($sql) as $key => $value) {
+           array_push($produtos, $value);
+          
+        }
+         return $produtos;
     }
      public function insert():int
     {
