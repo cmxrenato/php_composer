@@ -11,10 +11,11 @@ $produto->insert();
 
 echo '<h1>Produtos</h1>';
 foreach ($produto->list() as $row) {
-    echo '<p>';
-    echo 'ID: ' . $row['id'] . '<br>';
-    echo 'Nome: ' . $row['nome'] . '<br>';
-    echo 'Preço: R$' . $row['preco'] . '<br>';
-    echo 'Descrição: ' . $row['descricao'] . '<br>';
-    echo '</p>';
-}   
+	echo '<p>';
+	echo 'ID: ' . $row['id'] . '<br>';
+	echo 'Nome: ' . $row['nome'] . '<br>';
+	echo 'Preço: R$' . $row['preco'] . '<br>';
+	echo 'Descrição: ' . $row['descricao'] . '<br>';
+	echo '</p>';
+}
+
